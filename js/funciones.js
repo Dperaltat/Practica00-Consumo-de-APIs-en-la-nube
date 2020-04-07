@@ -34,15 +34,15 @@ function getPelis(buscTexT){
 function peliSelect(id){
     sessionStorage.setItem('peliId', id);
     window.location = 'pelicula.html';
-    return false;
+    return true;
 }
 
-function getPeli(){
+function getPelicula(){
     let peliId = sessionStorage.getItem('peliId');
     axios.get('http://www.omdbapi.com?i='+peliId+"&apikey=813e50a8")
     .then((respuesta) => {
         console.log(respuesta);
-        let pelicula = respuesta.data;
+        let peli = respuesta.data;
         let output = `
             <div class="row">
                 <div class="col-md-4">
@@ -74,7 +74,7 @@ function getPeli(){
 
         `;
         
-        $('#pelicula').html(output);
+        $('#peli').html(output);
     })
     .catch((err) =>{
         console.log(err);
