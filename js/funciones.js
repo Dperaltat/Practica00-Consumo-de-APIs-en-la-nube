@@ -14,7 +14,7 @@ function getPelis(buscTexT){
         var output = '';
         $.each(peliculas, (index, movie) => {
             output += ` 
-                <div class="col-md-3">
+                <div class="col-md-8">
                     <div class="well text-center">
                         <img src="${movie.Poster}">
                         <h5>${movie.Title}</h5>
@@ -35,6 +35,28 @@ function peliSelect(id){
     sessionStorage.setItem('peliId', id);
     window.location = 'pelicula.html';
     return false;
+}
+
+function getPelisID(peliId){
+    axios.get('https://www.omdbapi.com?i='+peliId+"&apikey=813e50a8")
+    .then((respuesta) => {
+        console.log(respuesta);
+        var peliculas = respuesta.data;
+        var output = '';
+            output += ` 
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="${movie.Poster}">
+                        <h5>${movie.Title}</h5>
+                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-primary" href="#"> Detalles</a>
+                    </div>
+                </div>
+            `;
+        $('#peliculas').html(output);
+    })
+    .catch((err) =>{
+        console.log(err);
+    });
 }
 
 function getPelicula(){
@@ -73,7 +95,6 @@ function getPelicula(){
                     </hr>
                 </div>
             </div>  
-
         `;
         
         $('#peli').html(output);
