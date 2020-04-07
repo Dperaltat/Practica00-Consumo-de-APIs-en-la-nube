@@ -1,4 +1,4 @@
-$(document).ready(()=>{
+$(document).ready(() => {
     $('#buscador').on('enviar', (e) => {
         let busctext = $('#buscTXT').val();
         getPelis(busctext);
@@ -7,7 +7,7 @@ $(document).ready(()=>{
 });
 
 function getPelis(busctext){
-    axios.get('http://www.omdbapi.com?s='+busctext).then((respuesta) =>{
+    axios.get('http://www.omdbapi.com?s='+busctext).then((respuesta) => {
     console.log(respuesta);
     })
     .catch((err) =>{
