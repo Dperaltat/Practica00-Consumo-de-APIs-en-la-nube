@@ -31,32 +31,6 @@ function getPelis(buscTexT){
     });
 }
 
-function getPelisID(buscID){
-    axios.get('https://www.omdbapi.com?i='+buscID+"&apikey=813e50a8")
-    .then((respuesta) => {
-        console.log(respuesta);
-        var peliculas = respuesta.data.Search;
-        var output = '';
-        $.each(peliculas, (index, movie) => {
-            output += ` 
-                <div class="col-md-3">
-                    <div class="well text-center">
-                        <img src="${movie.Poster}">
-                        <h5>${movie.Title}</h5>
-                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-primary" href="#"> Detalles</a>
-                    </div>
-                </div>
-            `;
-        });
-
-        $('#peliculas').html(output);
-    })
-    .catch((err) =>{
-        console.log(err);
-    });
-}
-
-
 function peliSelect(id){
     sessionStorage.setItem('peliId', id);
     window.location = 'pelicula.html';
