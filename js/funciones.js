@@ -34,15 +34,17 @@ function getPelis(buscTexT){
 function peliSelect(id){
     sessionStorage.setItem('peliId', id);
     window.location = 'pelicula.html';
-    return true;
+    return false;
 }
 
 function getPelicula(){
     let peliId = sessionStorage.getItem('peliId');
+
     axios.get('http://www.omdbapi.com?i='+peliId+"&apikey=813e50a8")
     .then((respuesta) => {
         console.log(respuesta);
-        let peli = respuesta.data;
+        let movie = respuesta.data;
+
         let output = `
             <div class="row">
                 <div class="col-md-4">
@@ -64,7 +66,7 @@ function getPelicula(){
             <div class="row">
                 <div class="well">
                     <h3>Trama</h3>
-                    ${movie.plot}
+                    ${movie.Plot}
                     <hr>
                     <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">Ver IMDB</a>
                     <a href="index.html" class="btn btn-default">Volver</a>
