@@ -65,10 +65,6 @@ function getPelicula(){
                 <div class="well">
                     <h3>Trama</h3>
                     ${movie.Plot}
-                    <hr>
-                    <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">Ver IMDB</a>
-                    <a href="index.html" class="btn btn-default">Inicio</a>
-                    </hr>
                 </div>
             </div>
         `;
