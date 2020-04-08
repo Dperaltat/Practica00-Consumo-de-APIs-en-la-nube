@@ -14,11 +14,11 @@ function getPelis(buscTexT){
         var output = '';
         $.each(peliculas, (index, movie) => {
             output += ` 
-                <div class="col-md-8">
+                <div class="col-md-3">
                     <div class="well text-center">
                         <img src="${movie.Poster}">
                         <h5>${movie.Title}</h5>
-                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-primary" href="#"> Detalles</a>
+                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-success" href="#"> Detalles</a>
                     </div>
                 </div>
             `;
@@ -35,28 +35,6 @@ function peliSelect(id){
     sessionStorage.setItem('peliId', id);
     window.location = 'pelicula.html';
     return false;
-}
-
-function getPelisID(peliId){
-    axios.get('https://www.omdbapi.com?i='+peliId+"&apikey=813e50a8")
-    .then((respuesta) => {
-        console.log(respuesta);
-        var peliculas = respuesta.data;
-        var output = '';
-            output += ` 
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src="${movie.Poster}">
-                        <h5>${movie.Title}</h5>
-                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-primary" href="#"> Detalles</a>
-                    </div>
-                </div>
-            `;
-        $('#peliculas').html(output);
-    })
-    .catch((err) =>{
-        console.log(err);
-    });
 }
 
 function getPelicula(){
@@ -77,8 +55,8 @@ function getPelicula(){
                     <ul class="list-group">
                         <li class="list-group-item"><strong>Género:</strong> ${movie.Genre}</li>
                         <li class="list-group-item"><strong>Publicada:</strong> ${movie.Released}</li>
-                        <li class="list-group-item"><strong>Calificación:</strong> ${movie.Rated}</li>
-                        <li class="list-group-item"><strong>Calificación IMDB:</strong> ${movie.imbdRating}</li>
+                        <li class="list-group-item"><strong>Clasificación:</strong> ${movie.Rated}</li>
+                        <li class="list-group-item"><strong>Calificación IMDB:</strong> ${movie.imdbRating}</li>
                         <li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
                         <li class="list-group-item"><strong>Escritor:</strong> ${movie.Writer}</li>
                         <li class="list-group-item"><strong>Actores:</strong> ${movie.Actors}</li>
