@@ -57,6 +57,7 @@ function getPelicula(){
                         <li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
                         <li class="list-group-item"><strong>Escritor:</strong> ${movie.Writer}</li>
                         <li class="list-group-item"><strong>Actores:</strong> ${movie.Actors}</li>
+                        <li class="list-group-item"><strong>Código:</strong> ${movie.imdbID}</li>
                     </ul>
                 </div>
             </div>
