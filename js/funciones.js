@@ -23,7 +23,30 @@ function getPelis(buscTexT){
                 </div>
             `;
         });
+        $('#peliculas').html(output);
+    })
+    .catch((err) =>{
+        console.log(err);
+    });
+}
 
+function getPelisID(buscTexT){
+    axios.get('https://www.omdbapi.com?i='+buscTexT+"&apikey=813e50a8")
+    .then((respuesta) => {
+        console.log(respuesta);
+        var peliculas = respuesta.data.Search;
+        var output = '';
+        $.each(peliculas, (index, movie) => {
+            output += ` 
+                <div class="col-md-3">
+                    <div class="well text-center">
+                        <img src="${movie.Poster}">
+                        <h5>${movie.Title}</h5>
+                        <a onclick="peliSelect('${movie.imdbID}')" class="btn btn-success" href="#"> Detalles</a>
+                    </div>
+                </div>
+            `;
+        });
         $('#peliculas').html(output);
     })
     .catch((err) =>{
@@ -39,12 +62,10 @@ function peliSelect(id){
 
 function getPelicula(){
     var peliId = sessionStorage.getItem('peliId');
-
     axios.get('http://www.omdbapi.com?i='+peliId+"&apikey=813e50a8")
     .then((respuesta) => {
         console.log(respuesta);
         var movie = respuesta.data;
-
         var output = `
             <div class="row">
                 <div class="col-md-4">
